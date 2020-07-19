@@ -1,0 +1,70 @@
+{% extends 'WebKart/basic.html' %}
+
+{% block title %}{{product.product_name}}-WebKart{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-4">
+
+      <div class="row">
+        <div class="border border-dark rounded "><img id="product_img" style="width:340px; height:450px;"
+            src="/media/{{product.image1}}" style="max-width:250px; max-height:330px" alt="{{product.product_name}}">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h2>{{product.product_name}}</h2>
+      <div class="row text-center">
+        <h3><b>₹{{product.price}}</b> </h3>
+        <h5 class="mx-4 text-secondary "><del>{{product.orignal_price}}</del></h5>
+      </div>
+      <p>{{product.desc}} </p>
+      <p><img src="{% static 'WebKart/tick_logo.png' %}" alt="tick"> Warranty -<strong>{{product.warranty}}</strong></p>
+      <h5>Specifications- </h5>
+      <p>{{product.full_specs}}</p>
+      <p><img src="{% static 'WebKart/replacement_logo.png' %}" alt="replacement_logo"> <strong>Replacement </strong>-1
+        Months </p>
+      <p><img src="{% static 'WebKart/rupees_logo.png' %}" alt="rupees"> <strong>Cash on Delivery available
+        </strong>-Yes</p>
+
+
+    </div>
+
+  </div>
+  <div class="row mx-4 my-4">
+    <button class="border border-dark rounded mx-2" onclick="change(1)"> <img src="/media/{{product.image1}}"
+        width="50px" height="60px"> </button>
+    <button class="border border-dark rounded mx-2" onclick="change(2)"> <img src="/media/{{product.image2}}"
+        width="50px" height="60px"> </button>
+    <button class="border border-dark rounded mx-2" onclick="change(3)"> <img src="/media/{{product.image3}}"
+        width="50px" height="60px"> </button>
+  </div>
+
+</div>
+
+<br>
+<br>
+
+
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+  function change(n) {
+    if (n == 1) {
+      document.getElementById('product_img').src = "/media/{{product.image1}}";
+    }
+    if (n == 2) {
+      document.getElementById('product_img').src = "/media/{{product.image2}}";
+    }
+    if (n == 3) {
+      document.getElementById('product_img').src = "/media/{{product.image3}}";
+    }
+  }
+</script>
+{% endblock %}

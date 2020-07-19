@@ -1,0 +1,46 @@
+{% extends 'WebKart/basic.html' %}
+
+{% block title %}Search -WebKart{% endblock %}
+
+{% block body %}
+
+{% load static %}
+
+<br><br><br>
+
+  
+  
+  <form>
+   
+    <div class="container">
+      <div class="nav justify-content-center">
+        <img src="{% static 'WebKart/sad_emoji.png' %}">
+      </div>
+    </div>
+    
+  </form>
+
+
+
+<div class="container">
+  <div class="row my-4">
+    
+    
+    <div class="col-12 mx-2 text-center">
+      <h2 class="text-danger"><strong>OOPS </strong></h2>
+    </div>
+  </div>
+  <div class="row my-4">
+    <div class="col-12 text-center">
+      <h2 class="text-danger"><strong>Sorry No Result Found!</strong></h2>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<br><br><br><br><br>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'WebKart/basic.html' %}
+
+{% block title %}About-Us{% endblock %}
+{% block css %}
+
+.about_logo
+{
+height:100px;
+width:110px;
+border:1px solid black;
+border-radius:100%;
+}
+
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <img src="{% static 'WebKart/WebKart_logo.PNG' %}">
+
+        </div>
+      </div>
+      <h1 class="display-3">WebKart.com</h1>
+      <p>Webkart is an Indian e-commerce company based in Bangalore, Bhopal, India. It was founded by Lokesh Keer in
+        2020.
+        The company initially focused on book sales,
+        before expanding into other product categories such as consumer electronics,
+        fashion, home essentials & groceries, and lifestyle products.
+
+        The service competes primarily with Amazon's Indian subsidiary,
+        and the domestic rival Snapdeal.[5][6] As of March 2020, WebKart held a 39.5% market share of India's e-commerce
+        industry.
+        [7] Webkart is significantly dominant in the sale of apparel (a position that was bolstered by its acquisition
+        of Myntra),
+        and was described as being "neck and neck" with Amazon in the sale of electronics and mobile phones.[8] Webkart
+        also owns PhonePe,
+        a mobile payments service based on the Unified Payments Interface (UPI).
+
+      </p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+  </div>
+
+  <br><br>
+  <div class="container text-xl-left mw-100" style="background:rgba(9, 233, 184, 0.212); height: 335px;">
+    <div class="row">
+      <div class="col w-50 p-3" style="height: auto;">
+        <img src="{% static 'WebKart/lokesh.png' %}" style="transform: translateY(-31%); cursor: pointer;" height="465px">
+      </div>
+      <div class="col w-50 p-3" style="height: fit-content;">
+        <p style="color: rgb(14, 43, 7);
+               margin-top: 30px;
+               font-style: italic;
+               font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+               ">
+          "Innovative programmer and Developer.<br>
+          I am striving to make the world a more unified and connected place .<br>
+          A creative thinker , adept in full stack development and working with various technologies ."<br>
+
+        </p>
+        <h5
+          style="color: goldenrod; text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+          Lokesh Keer
+          <h6 style="color: brown; text-align: center;">Web Developer |Data Scientist| Android Developer</h6>
+        </h5>
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <hr>
+    <div class="row">
+      
+      <div class="col-md-3">
+        <img src="{% static 'WebKart/linkedin_logo.PNG' %}" class="about_logo">
+        <h2>LinkedIn</h2>
+        <p>Connect With Social Media and with us. </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-3">
+        <img src="{% static 'WebKart/facebook_logo.PNG' %}" class="about_logo">
+        <h2>FaceBook</h2>
+        <p>Connect With Social Media and with us. </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-3">
+        <img src="{% static 'WebKart/twitter_logo.PNG' %}" class="about_logo">
+        <h2>Twitter</h2>
+        <p>Connect With Social Media and with us.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-3">
+        <img src="{% static 'WebKart/insta_logo.PNG' %}" class="about_logo">
+        <h2>Instagram</h2>
+        <p>Connect With Social Media and with us.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+
+    <hr>
+
+  </div> <!-- /container -->
+
+</main>
+
+
+
+{% endblock %}

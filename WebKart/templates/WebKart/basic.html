@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {% load static %}
+  <!--- Tittle Bar logo --->
+  <link rel="icon" href="{% static 'WebKart/logo.png' %}" type="image/icon type">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <title>{% block title %}{% endblock %}</title>
+  <style>
+  .anchor{
+  color:white;
+}
+.anchor:hover{
+  background-color:lightgray;
+  border-radius:12px;
+  color:black;
+
+}
+ .anchor1{
+  color:white;
+}
+.anchor1:hover{
+   color:white;
+   text-decoration:none;
+
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+body{
+   overflow-x: hidden;
+}
+
+    {% block css %}
+
+      {% endblock %}
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="/WebKart">WebKart</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/WebKart">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/WebKart/about">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/WebKart/tracker">Tracker</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/WebKart/contact">Contact Us</a>
+        </li>
+
+
+
+
+
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="/WebKart/search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+      <button type="button" id="popcart" data-placement="bottom" class="btn btn-secondary mx-2"  data-container="body"
+          data-html="true" data-toggle="modal" data-target="#exampleModal">
+        <a class="anchor1" href="/WebKart/checkout">  Cart(<span id="cart">0</span> )  </a>
+      </button>
+    </div>
+
+    </div>
+  </nav>
+
+  {% block body %}{% endblock %}
+  <br>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+  {% block js %}
+  <script>
+
+    console.log("Working");
+    if (localStorage.getItem('cart') == null) {
+      var cart = {};
+    }
+    else {
+      cart = JSON.parse(localStorage.getItem('cart'));
+      document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    }
+    $('.cart').click(
+      function () {
+        var idstr = this.id.toString();
+        console.log('Clicked');
+        console.log(idstr);
+        if (cart[idstr] != undefined) {
+          cart[idstr] = cart[idstr] + 1;
+        }
+        else {
+          cart[idstr] = 1;
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        console.log(cart);
+
+      }
+    );
+    $('#popcart').popover()
+
+
+
+  </script>
+  {% endblock %}
+  <br>
+<div class="bg-secondary text-white" style="width:auto; padding:40px 40px;">
+
+  <div class="row mx-md-n5">
+    <div class="col-9 px-md-5">
+    <div class="row">
+
+      <div class="col-3 foot_col">
+        <h5>Menu</h5>
+        <ul style="border-left:2px solid black">
+          <li><a href="/WebKart" class="anchor">Home</a></li>
+          <li><a href="/tracker" class="anchor">Tracker</a></li>
+          <li><a href="/checkout" class="anchor">Checkout</a></li>
+          <li><a href="/checkout" class="anchor">Products</a></li>
+        </ul>
+      </div>
+      <div class="col-3 foot_col">
+        <h5>Services</h5>
+        <ul style="border-left:2px solid black">
+          <li><a href="/tracker" class="anchor">Track Your Order</a></li>
+          <li><a href="/contact" class="anchor">Complaint</a></li>
+          <li><a href="" class="anchor">Product Review</a></li>
+          <li><a href="" class="anchor">Delivery System</a></li>
+          <li><a href="" class="anchor">Delivery Rates</a></li>
+          <li><a href="" class="anchor">Delivery Charges</a></li>
+        </ul>
+
+      </div>
+      <div class="col-3 foot_col">
+        <h5>Inquery</h5>
+        <ul style="border-left:2px solid black">
+          <li><a href="/contact" class="anchor">Contact Us</a></li>
+          <li><a href="/about" class="anchor">About Us</a></li>
+
+        </ul>
+      </div>
+      <div class="col-3 foot_col">
+        <h5>Category</h5>
+        <ul style="border-left:2px solid black">
+          <li><a href="" class="anchor">Electronics</a></li>
+          <li><a href="" class="anchor">Furniture</a></li>
+          <li><a href="" class="anchor">Kitchen Products</a></li>
+          <li><a href="" class="anchor">Grocery</a></li>
+          <li><a href="" class="anchor">Mobiles</a></li>
+          <li><a href="" class="anchor">Mobiles Accessories</a></li>
+          <li><a href="" class="anchor">Computer Accessories</a></li>
+          <li><a href="" class="anchor">Computer</a></li>
+        </ul>
+      </div>
+    </div></div>
+      <div class="col">
+
+        <img src="{% static 'WebKart/WebKart_logo.png' %}" >
+        <div class="row" style="margin-left:15px; width:50px; background: black; height:8px;  border-radius:100%;"></div>
+        <br>
+        <div class="row my-4">
+          <ul class="nav">
+            <li class="nav-item mx-4"><a href="#" class="anchor"><strong>📞</strong> </a></li>
+            <li class="nav-item mx-4" ><a href="#" class="anchor"> <strong>🅵</strong></a> </li>
+            <li class="nav-item mx-4"><a href="#" class="anchor"> <strong>🆃</strong></a> </li>
+
+          </ul><br>
+          </div>
+          <div class="row" style="color:lightblue">
+          🅴🅼🅰🅸🅻 - WebKart@bussiness.com
+
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="max-auto" style="text-align:center; color:white; ">
+      <h6 >© Copyright <strong> - WebKart LTD</strong></h6>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+</body>
+
+</html>

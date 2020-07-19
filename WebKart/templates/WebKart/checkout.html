@@ -1,0 +1,130 @@
+{% extends 'WebKart/basic.html' %}
+
+{% block title %}Checkout -WebKart{% endblock %}
+
+{% block body %}
+
+<div class="container my-4">
+<div class="container my-4">
+    <h3>Your Items</h3>
+
+    <ul class="list-group" id="items">
+    </ul>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mt-4">
+        <li class="breadcrumb-item active " aria-current="page">Total Price - <strong><span id="totalPrice"></span></strong></li>
+      </ol>
+    </nav>
+    <div class="row mx-auto">
+    <button class="btn btn-secondary" onclick="clearCart()">Clear Cart</button>
+  </div>
+</div>
+    <hr>
+<div class="container my-2">
+    <h3>Fill Details</h3>
+
+    <form action="/WebKart/checkout" method="post">
+        {% csrf_token %}
+        <input type="hidden" id="itemsjson" name="itemsjson">
+  <div class="form-row">
+      <div class="form-group col-md-6">
+      <label for="name">Full Name</label>
+      <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email">
+    </div>
+
+  </div>
+  <div class="form-group">
+    <label for="address1">Address</label>
+    <input type="text" class="form-control" id="address1" name="address1" placeholder="1234 Main St">
+  </div>
+  <div class="form-group">
+    <label for="address2">Address line 2</label>
+    <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="city">City</label>
+      <input type="text" class="form-control" id="city" name="city">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="state">State</label>
+      <input type="text" class="form-control" id="state" name="state">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="zip_code">Zip</label>
+      <input type="text" class="form-control" id="zip_code" name="zip_code">
+    </div>
+  </div>
+  <div class="form-group col-md-4">
+
+        <label for="phone">Mobile Number</label>
+      <input class="form-control" type="tel" id="phone" name="phone">
+  </div>
+  <button type="submit" class="btn btn-primary">Place Order</button>
+</form>
+
+</div>
+
+
+</div>
+
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+
+function clearCart() {
+    
+    localStorage.clear();
+    window.location='/WebKart'
+    
+}
+
+var sum = 0;
+var totalPrice = 0;
+if ($.isEmptyObject(cart)) {
+    //if object is empty
+    mystr = `<p>Your cart is empty, please add some items to your cart before checking out!</p>`
+    $('#items').append(mystr);
+} else {
+console.log('inside');
+    for (item in cart) {
+        let name = cart[item][1];
+        let qty = cart[item][0];
+        let itemPrice = cart[item][2];
+        sum = sum + qty;
+        totalPrice = totalPrice + qty*itemPrice;
+        mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${name}
+                    <span class="badge badge-primary badge-pill">${qty}</span>
+                </li>`
+        $('#items').append(mystr);
+    }
+    console.log(cart);
+}
+document.getElementById('cart').innerHTML = sum;
+document.getElementById('totalPrice').innerHTML = totalPrice;
+$('#itemsjson').val(JSON.stringify(cart));
+{% if thank %}
+alert('Thanks For Ordering from our site .    Your order ID - {{id}} .   \n     Use this id for tracking Your Order');
+localStorage.clear();
+document.location = "/WebKart/";
+{% endif %}
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+{% endblock %}
